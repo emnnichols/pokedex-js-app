@@ -36,3 +36,13 @@ let pokemonList = [
         type: ['fire','flying']
     },
 ];
+
+for (let i=0; i < pokemonList.length; i++) {
+    let pokemonName = pokemonList[i].name;
+    let pokemonHeight = pokemonList[i].height;
+    let pokemonWeight = pokemonList[i].weight;
+    let writeHeight = pokemonHeight >= 1.0 
+        ? `Height: ${pokemonHeight} m - Wow, that's big!` 
+        : `Height: ${pokemonHeight} m`;
+    document.write(`<h2>${pokemonName}</h2> <p class="pokemon-info">${writeHeight} <br> Weight: ${pokemonWeight} kg </p>`);
+}
