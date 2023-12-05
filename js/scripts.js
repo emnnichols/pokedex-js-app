@@ -9,7 +9,12 @@ let pokemonRepository = (function () {
     ];
 
     function add(pokemon) {
-        pokemonList.push(pokemon);
+        if (typeof pokemon === "object") {
+            pokemonList.push(pokemon);
+            console.log(`Pokemon List has been updated!`);
+        } else {
+            return pokemon + ' is not a valid object';
+        }
     }
     
     function getAll() {
