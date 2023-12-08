@@ -1,7 +1,9 @@
 :root {
-    --primary-color: rgba(117, 17, 17, 0.2);
+    --primary-color: rgb(155, 124, 173);
     --secondary-color: #fff;
+    --tertiary-color: rgb(202, 131, 171);
 
+    --transparent-primary: rgba(155, 124, 173, 0.3);
     --transparent-secondary: rgba(255, 255, 255, 0.3);
 }
 
@@ -10,7 +12,7 @@
 }
 
 body {
-    background-color: var(--primary-color);
+    background-color: var(--transparent-primary);
     font-family: 'Poppins', sans-serif;
     margin: 0px auto;
     text-align: center;
@@ -25,8 +27,10 @@ h1, h2 {
 }
 
 h1 {
-    margin: 0px auto;
-    width: 100%;
+    margin: 10px auto 0px;
+    width: 80%;
+    padding: 0px 15px;
+    box-shadow: 3px 3px var(--tertiary-color), -3px -3px var(--primary-color);
 }
 
 h2 {
@@ -41,7 +45,7 @@ h2:hover {
     border: none;
 }
 
-.pokemon-info {
+/* .pokemon-info {
     background-color: var(--transparent-secondary);
     max-width: 800px;
     margin: -15px auto 10px auto;
@@ -49,4 +53,31 @@ h2:hover {
     border-radius: 15px;
     padding-top: 20px;
     padding-bottom: 5px;
+} */
+
+.pokemon-list {
+    list-style-type: none;
+    text-align: center;
+    margin: 0px auto 0px -40px;
+}
+
+.pokemon-button {
+    cursor: pointer;
+    width: 50%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 2px solid var(--tertiary-color);
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    font-family: 'Anton', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.pokemon-button:hover {
+    border: 2px solid #000;
+    background-color: var(--transparent-secondary);
+    color: var(--tertiary-color);
+    letter-spacing: 3px;
 }
