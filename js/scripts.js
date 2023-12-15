@@ -1,6 +1,6 @@
-let pokemonRepository = (function () {
-    let pokemonList = [];
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+const pokemonRepository = (function () {
+    const pokemonList = [];
+    const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     function add(pokemon) {
         if (typeof pokemon === "object") {
@@ -17,20 +17,84 @@ let pokemonRepository = (function () {
 
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function() {
-            console.log(pokemon)
+          let detailsContainer = document.querySelector('#details-container');
+        detailsContainer.innerHTML = '';
+
+        let details = document.createElement('div');
+        details.classList.add('pokemon-details');
+
+        let closeButton = document.createElement('button');
+        closeButton.classList.add('details-close');
+        closeButton.innerText = 'x';
+        closeButton.addEventListener('click', hideDetails);
+
+        let detailsTitle = document.createElement('h2');
+        detailsTitle.innerText = pokemon.name;
+
+        let detailsContent = document.createElement('p');
+        // converts height to from decimeters to meters
+        let meterHeight = pokemon.height / 10;
+        let writeHeight = meterHeight >= 1.0
+        ? `Height: ${meterHeight} m - Wow, that's big!`
+        : `Height: ${meterHeight} m`;
+
+        // converts weight to from hectograms to kilograms
+        let writeWeight = 'Weight: ' + pokemon.weight / 10 + ' kg';
+
+        let writeTypes = pokemon.types;
+
+        let spriteContainer = document.createElement('div');
+        spriteContainer.classList.add('pokemon-sprite');
+
+        let spriteImg = document.createElement('img');
+        spriteImg.src = pokemon.imageUrl;
+        spriteImg.classList.add('pokemon-sprite','pokemon-details');
+
+        detailsContent.innerText = `${writeWeight}
+        ${writeHeight}
+        Type: ${writeTypes}`;
+        
+        details.appendChild(spriteContainer);
+        spriteContainer.appendChild(closeButton);
+        spriteContainer.appendChild(spriteImg);
+        details.appendChild(detailsTitle);
+        details.appendChild(detailsContent);
+        detailsContainer.appendChild(details);
+
+        detailsContainer.classList.add('is-visible');
+
+        detailsContainer.addEventListener('click', (e) => {
+          let target = e.target;
+          if (target === detailsContainer) {
+            hideDetails();
+          }
         })
-    }
+      })
+    } // Details modal | show
+
+    function hideDetails() {
+      let detailsContainer = document.querySelector('#details-container');
+      detailsContainer.classList.remove('is-visible');
+    } // Details modal | hide
+
+    window.addEventListener('keydown', (e) => {
+      let detailsContainer = document.querySelector('#details-container');
+      
+      if (e.key === 'Escape' && detailsContainer.classList.contains('is-visible')) {
+        hideDetails();
+      }
+    }); // Details modal | press Esc to close
 
     function buttonListener(button, pokemon) {
         button.addEventListener('click', function(event){
             showDetails(pokemon)
         });
-    }
+    } // Click to get details modal
 
     function addListItem(pokemon) {
-        let list = document.querySelector('.pokemon-list');
-        let listItem = document.createElement('li');
-        let button = document.createElement('button');
+        const list = document.querySelector('.pokemon-list');
+        const listItem = document.createElement('li');
+        const button = document.createElement('button');
     
         button.innerText = pokemon.name;
         button.classList.add('pokemon-button');
@@ -41,19 +105,19 @@ let pokemonRepository = (function () {
     }
 
     function showLoadingMessage() {
-        let list = document.querySelector('.pokemon-list');
-        let loadingMessage = document.createElement('button');
+        const list = document.querySelector('.pokemon-list');
+        const loadingMessage = document.createElement('button');
 
         loadingMessage.innerText = 'Content Loading';
         loadingMessage.classList.add('pokemon-button','loading-message');
         list.appendChild(loadingMessage);
-    };
+    }
     
     function hideLoadingMessage() {
-        let hide = document.querySelector('.loading-message');
+        const hide = document.querySelector('.loading-message');
 
         hide.parentElement.removeChild(hide);
-    };
+    }
 
     function loadList() {
 
@@ -64,7 +128,7 @@ let pokemonRepository = (function () {
         }).then(function (json) {
             hideLoadingMessage()
           json.results.forEach(function (item) {
-            let pokemon = {
+            const pokemon = {
               name: item.name,
               detailsUrl: item.url
             };
@@ -74,13 +138,13 @@ let pokemonRepository = (function () {
             hideLoadingMessage()
           console.error(e);
         })
-      }
+    } // Load API
 
-      function loadDetails(pokemon) {
+    function loadDetails(pokemon) {
 
         showLoadingMessage();
 
-        let url = pokemon.detailsUrl;
+        const url = pokemon.detailsUrl;
 
         return fetch(url).then(function (response) {
           return response.json();
@@ -94,7 +158,7 @@ let pokemonRepository = (function () {
             hideLoadingMessage()
           console.error(e);
         });
-      }    
+    }    
     
       return {
         add: add,
@@ -108,9 +172,5 @@ let pokemonRepository = (function () {
 pokemonRepository.loadList().then(function() {
     pokemonRepository.getAll().forEach(function(pokemon) {
     pokemonRepository.addListItem(pokemon)
-
-    // let writeHeight = pokemon.height >= 1.0
-    //     ? `Height: ${pokemon.height} m - Wow, that's big!`
-    //     : `Height: ${pokemon.height} m`;
     });
 });
