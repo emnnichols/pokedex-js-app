@@ -7,7 +7,7 @@
 
     --transparent-primary: rgba(155, 124, 173, 0.3);
     --transparent-primary-overlay: rgba(155, 124, 173, 0.5);
-    --transparent-secondary: rgba(255, 255, 255, 0.5);
+    --transparent-secondary: rgba(255, 255, 255, 0.8);
     --transparent-tertiary: rgba(202, 131, 171, 0.7);
 }
 
@@ -45,16 +45,6 @@ h2 {
     background-color: var(--secondary-color);
     transition: all 0.5s;
 }
-
-/* .pokemon-info {
-    background-color: var(--transparent-secondary);
-    max-width: 800px;
-    margin: -15px auto 10px auto;
-    text-align: center;
-    border-radius: 15px;
-    padding-top: 20px;
-    padding-bottom: 5px;
-} */
 
 .pokemon-list {
     list-style-type: none;
@@ -120,35 +110,40 @@ h2 {
 .details-close {
     float: right;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 25px;
     border: 0;
-    width: 25px;
+    width: 30px;
     height: 25px;
-    padding-bottom: 5px;
-    background-color: #fff;
+    padding-bottom: 29px;
+    background-color: var(--transparent-primary-overlay);
+    box-shadow: inset 0px 0px 6px 3px var(--transparent-tertiary);
     border-radius: 50%;
-    color: var(--tertiary-color);
+    color: var(--primary-color);
     text-decoration: none;
     z-index: 9999;
   }
 
 .details-close:hover {
-    color: #000;
-    font-style: italic;
+    color: var(--primary-color);
+    background-color: var(--transparent-primary-overlay);
+    box-shadow: 0px 0px 6px 3px var(--transparent-tertiary);
   }
 
 .pokemon-details h2 {
     margin-top: 0px;
+    background: var(--light-primary);
+    box-shadow: 3px 3px 3px 0px var(--transparent-tertiary);
   }
   
 .pokemon-details p {
     margin-bottom: 10px;
     background: var(--light-primary);
-    box-shadow: 0px 6px 6px 0px var(--transparent-tertiary);
+    box-shadow: 3px 3px 3px 0px var(--transparent-tertiary);
     padding: 10px;
     border-radius: 15px;
-    line-height: 30px;
-    word-spacing: 10px;
+    line-height: 35px;
+    word-spacing: 5px;
+    letter-spacing: 2px;
   }
 
 .pokemon-sprite {
@@ -159,8 +154,8 @@ h2 {
 }
 
 img.pokemon-sprite {
-    max-width: 200px;
+    max-width: 150px;
     background-color: var(--light-primary);
-    box-shadow: 0px 6px 6px 0px var(--transparent-tertiary);
+    box-shadow: 0px 0px 12px 6px var(--transparent-tertiary);
     border-radius: 50%;
   }

@@ -25,7 +25,7 @@ const pokemonRepository = (function () {
 
         let closeButton = document.createElement('button');
         closeButton.classList.add('details-close');
-        closeButton.innerText = 'x';
+        closeButton.innerText = '×';
         closeButton.addEventListener('click', hideDetails);
 
         let detailsTitle = document.createElement('h2');
@@ -41,7 +41,14 @@ const pokemonRepository = (function () {
         // converts weight to from hectograms to kilograms
         let writeWeight = 'Weight: ' + pokemon.weight / 10 + ' kg';
 
-        let writeTypes = pokemon.types;
+        let types = '';
+        for (let i = 0; i < pokemon.types.length; i++) {
+          if (i >= 1) {
+          types += (' and ' + pokemon.types[i].type.name)
+        } else {
+          types += (pokemon.types[i].type.name)}};
+
+        let writeTypes = 'Types: ' + types;
 
         let spriteContainer = document.createElement('div');
         spriteContainer.classList.add('pokemon-sprite');
@@ -52,7 +59,7 @@ const pokemonRepository = (function () {
 
         detailsContent.innerText = `${writeWeight}
         ${writeHeight}
-        Type: ${writeTypes}`;
+        ${writeTypes}`;
         
         details.appendChild(spriteContainer);
         spriteContainer.appendChild(closeButton);
@@ -117,7 +124,7 @@ const pokemonRepository = (function () {
         const hide = document.querySelector('.loading-message');
 
         hide.parentElement.removeChild(hide);
-    }
+    } 
 
     function loadList() {
 
