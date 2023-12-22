@@ -69,7 +69,7 @@ const pokemonRepository = (function () {
         details.appendChild(modalContent);
         modalContainer.appendChild(details);
       })
-    } // Details modal | show
+    } // Details modal
 
     function addListItem(pokemon) {
         const list = document.querySelector('.list-group');
