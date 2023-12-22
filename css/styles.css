@@ -49,6 +49,11 @@ body {
     transition: all 0.5s;
 }
 
+.d-inline-block {
+    margin-top: -5px;
+    margin-left: -10px;
+}
+
 .container-fluid {
     margin: 40px auto 0px;
     text-align: center;
