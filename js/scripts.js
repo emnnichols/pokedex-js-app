@@ -100,7 +100,7 @@ const pokemonRepository = (function () {
         const loadingMessage = document.createElement('button');
 
         loadingMessage.innerText = 'Content Loading';
-        loadingMessage.classList.add('pokemon-button','loading-message');
+        loadingMessage.classList.add('btn-primary','loading-message');
         list.appendChild(loadingMessage);
     }
     
