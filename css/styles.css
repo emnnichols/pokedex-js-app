@@ -8,7 +8,7 @@
     --transparent-primary: rgba(155, 124, 173, 0.3);
     --transparent-primary-overlay: rgba(155, 124, 173, 0.9);
     --transparent-secondary: rgba(255, 255, 255, 0.8);
-    --transparent-tertiary: rgba(202, 131, 171, 0.7);
+    --transparent-tertiary: rgba(202, 131, 171, 0.5);
 }
 
 * {
@@ -22,40 +22,25 @@ body {
     width: 100%;
 }
 
-h1, h2, .navbar-brand {
-    font-family: 'Anton', sans-serif;
-    text-align: center;
-    border-radius: 15px;
-    letter-spacing: 2px;
-}
-
-h1, .navbar-brand {
-    margin: 3px auto 0px;
-    width: 80%;
-    background-color: var(--transparent-tertiary);
-    border-radius: 50px;
-    min-width: fit-content;
-    padding: 0px 15px;
-}
-
-h2 {
-    margin: 0px auto;
-    max-width: 900px;
-    box-shadow: 2px 2px 2px 0px var(--primary-color);
-    background-color: var(--secondary-color);
-    transition: all 0.5s;
-}
-
 .navbar {
     margin: 0px auto;
     background-color: var(--light-primary);
     padding: 0px;
+    padding-bottom: 7px;
 }
 
 .navbar-brand {
     padding-bottom: 3px;
     font-size: 35px;
     transition: all 0.5s;
+    font-family: 'Anton', sans-serif;
+    text-align: center;
+    letter-spacing: 2px;
+    margin: 3px auto 0px;
+    width: 80%;
+    background-color: var(--transparent-tertiary);
+    border-radius: 50px;
+    box-shadow: 0px 3px 2px 0px var(--transparent-primary);
 }
 
 .navbar:hover .navbar-brand {
@@ -65,14 +50,16 @@ h2 {
 }
 
 .container-fluid {
-    margin: 30px auto 0px;
+    margin: 40px auto 0px;
     text-align: center;
-    padding: 0px;
+    padding: 15px;
     padding-top: 10px;
     background-color: var(--light-primary);
 }
 
 .row {
+    margin: 0px auto;
+    width: 100%;
     padding-left: 50px;
     padding-right: 50px;
 }
@@ -80,6 +67,7 @@ h2 {
 .list-group-item {
     text-align: center;
     margin: 0px auto;
+    width: 100%;
     padding-bottom: 0px;
     background-color: var(--light-primary);
     border: none;
@@ -157,6 +145,11 @@ h2 {
     margin-bottom: 20px;
     background: var(--light-primary);
     box-shadow: 3px 3px 3px 0px var(--transparent-tertiary);
+    max-width: 900px;
+    font-family: 'Anton', sans-serif;
+    text-align: center;
+    border-radius: 15px;
+    letter-spacing: 2px;
   }
   
   .modal-body p {
