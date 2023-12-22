@@ -15,13 +15,13 @@ const pokemonRepository = (function () {
         return pokemonList;
     }
 
-    function showDetails(pokemon) {
+    function detailsModal(pokemon) {
         loadDetails(pokemon).then(function() {
           let detailsContainer = document.querySelector('.modal-content'); //bootstrap modal
         detailsContainer.innerHTML = '';
 
         let details = document.createElement('div');
-        details.classList.add('pokemon-details');
+        details.classList.add('modal-body');
 
         let closeButton = document.createElement('button');
         closeButton.classList.add('close');
@@ -56,7 +56,7 @@ const pokemonRepository = (function () {
 
         let spriteImg = document.createElement('img');
         spriteImg.src = pokemon.imageUrl;
-        spriteImg.classList.add('pokemon-sprite','pokemon-details');
+        spriteImg.classList.add('pokemon-sprite','modal-body');
 
         detailsContent.innerText = `${writeWeight}
         ${writeHeight}
@@ -71,23 +71,9 @@ const pokemonRepository = (function () {
       })
     } // Details modal | show
 
-    function hideDetails() {
-      let detailsContainer = document.querySelector('.modal-content');
-      detailsContainer.classList.remove('is-visible');
-    } // Details modal | hide
-
-    window.addEventListener('click', (e) => {
-      let detailsContainer = document.querySelector('.modal-content');
-      let target = e.target;
-
-      if (target === detailsContainer && detailsContainer.classList.contains('is-visible')) {
-        hideDetails();
-      }
-    }); // Details modal | Click outside to close
-
     function buttonListener(button, pokemon) {
         button.addEventListener('click', function(event){
-            showDetails(pokemon)
+            detailsModal(pokemon)
         });
     } // Click to get details modal
 
