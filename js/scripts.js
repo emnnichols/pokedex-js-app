@@ -17,22 +17,22 @@ const pokemonRepository = (function () {
 
     function detailsModal(pokemon) {
         loadDetails(pokemon).then(function() {
-          let detailsContainer = document.querySelector('.modal-content'); //bootstrap modal
-        detailsContainer.innerHTML = '';
+        const modalContainer = document.querySelector('.modal-content'); //bootstrap modal
+        modalContainer.innerHTML = '';
 
-        let details = document.createElement('div');
+        const details = document.createElement('div');
         details.classList.add('modal-body');
 
-        let closeButton = document.createElement('button');
+        const closeButton = document.createElement('button');
         closeButton.classList.add('close');
         closeButton.setAttribute('data-dismiss', 'modal'); //bootstrap hide/close modal
         closeButton.setAttribute('aria-label', 'Close');
         closeButton.innerText = '×';
 
-        let detailsTitle = document.createElement('h2');
-        detailsTitle.innerText = pokemon.name;
+        const modalTitle = document.createElement('h2');
+        modalTitle.innerText = pokemon.name;
 
-        let detailsContent = document.createElement('p');
+        let modalContent = document.createElement('p');
         // converts height to from decimeters to meters
         let meterHeight = pokemon.height / 10;
         let writeHeight = meterHeight >= 1.0
@@ -58,24 +58,18 @@ const pokemonRepository = (function () {
         spriteImg.src = pokemon.imageUrl;
         spriteImg.classList.add('pokemon-sprite','modal-body');
 
-        detailsContent.innerText = `${writeWeight}
+        modalContent.innerText = `${writeWeight}
         ${writeHeight}
         ${writeTypes}`;
         
         spriteContainer.appendChild(closeButton);
         spriteContainer.appendChild(spriteImg);
         details.appendChild(spriteContainer);
-        details.appendChild(detailsTitle);
-        details.appendChild(detailsContent);
-        detailsContainer.appendChild(details);
+        details.appendChild(modalTitle);
+        details.appendChild(modalContent);
+        modalContainer.appendChild(details);
       })
     } // Details modal | show
-
-    function buttonListener(button, pokemon) {
-        button.addEventListener('click', function(event){
-            detailsModal(pokemon)
-        });
-    } // Click to get details modal
 
     function addListItem(pokemon) {
         const list = document.querySelector('.list-group');
@@ -96,7 +90,9 @@ const pokemonRepository = (function () {
         gridItem.appendChild(listItem); // append li to bootstrap grid
         list.appendChild(gridItem); // append grid to list-group
 
-        buttonListener(button, pokemon);
+        button.addEventListener('click', function(event){
+          detailsModal(pokemon)
+      });  // Click to get details modal
     }
 
     function showLoadingMessage() {
